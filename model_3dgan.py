@@ -277,8 +277,9 @@ class GAN3D(object):
                 if np.mod(counter, 500) == 2:
                     self.save(self.checkpoint_dir, counter)
 
-    def test(self, file_name, g_sample_num):
+    def test(self, file_name):
 
+        #mat_path = self.sample_g_path + '/' + file_name
         mat_path = self.sample_g_path + '/' + file_name
         # print(mat_path)
 

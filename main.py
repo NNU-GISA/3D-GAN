@@ -10,3 +10,5 @@ with tf.Session() as sess:
                    checkpoint_dir=checkpoint_dir, sample_g_path=sample_g_path)
 
     gan3d.train()
+
+    gan3d.test("generated")
