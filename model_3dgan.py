@@ -144,13 +144,13 @@ class GAN3D(object):
         self.g_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(
             labels=tf.ones_like(self.D_fake), logits=self.D_fake_logits ))
 
-        self.d_loss_real_sum = tf.scalar_summary("d_loss_real", self.d_loss_real)
-        self.d_loss_fake_sum = tf.scalar_summary("d_loss_fake", self.d_loss_fake)
+        self.d_loss_real_sum = tf.summary.scalar("d_loss_real", self.d_loss_real)
+        self.d_loss_fake_sum = tf.summary.scalar("d_loss_fake", self.d_loss_fake)
 
         self.d_loss = self.d_loss_real + self.d_loss_fake
 
-        self.g_loss_sum = tf.scalar_summary("g_loss", self.g_loss)
-        self.d_loss_sum = tf.scalar_summary("d_loss", self.d_loss)
+        self.g_loss_sum = tf.summary.scalar("g_loss", self.g_loss)
+        self.d_loss_sum = tf.summary.scalar("d_loss", self.d_loss)
 
         t_vars = tf.trainable_variables()
 
