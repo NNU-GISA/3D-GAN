@@ -124,7 +124,7 @@ class GAN3D(object):
         # tf.float32, [self.sample_num] + input_data_dims, name='fake_3d_data')
 
         self.z = tf.placeholder(tf.float32, [None, self.z_dim], name='z')
-        self.z_sum = tf.histogram_summary("z", self.z)
+        #self.z_sum = tf.histogram_summary("z", self.z)
 
         # three data flow
         self.G = self.generator(self.z)
@@ -132,8 +132,8 @@ class GAN3D(object):
         self.D_real, self.D_real_logits = self.discriminator(self.input_data, reuse=False)
         self.D_fake, self.D_fake_logits = self.discriminator(self.G, reuse=True)
 
-        self.d_sum = tf.histogram_summary("d", self.D_real)
-        self.d__sum = tf.histogram_summary("d_", self.D_fake)
+        #self.d_sum = tf.histogram_summary("d", self.D_real)
+        #self.d__sum = tf.histogram_summary("d_", self.D_fake)
         # self.G_sum = tf.image_summary("G", self.G)
 
         # loss function
