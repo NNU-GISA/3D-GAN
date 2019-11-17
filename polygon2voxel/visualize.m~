@@ -1,0 +1,17 @@
+function none = visualize(root, voxel_root, filename, category)
+
+    meshpath = [root, category, filename, '.off']
+    voxelpath = [voxel_root, category, filename, '.mat'];
+    FV = load_off(meshpath);
+    figure
+    c = zeros(length(FV.vertices),1);
+    trisurf(FV.faces(2:end), FV.vertices(2:end,1), FV.vertices(2:end,2), FV.vertices(2:end,3), c);
+    axis equal
+    load(voxelpath); % will assign the wanted Volume variable
+    figure
+    patch(isosurface(Volume,0.1), 'Facecolor', [1 0 0]);
+    axis equal
+
+    none = 0;
+    
+end
