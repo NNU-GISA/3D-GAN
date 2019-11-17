@@ -16,6 +16,8 @@ def load_data_np(train_data_path, list_train_data_name, batch_data):
 
 		batch_data[i_data] = np.array(data_dict['instance'], dtype = int)
 
+	# return batch_data
+
 
 def load_data_path(train_data_path,load_mode):
 	
