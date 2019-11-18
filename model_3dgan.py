@@ -124,7 +124,7 @@ class GAN3D(object):
         # tf.float32, [self.sample_num] + input_data_dims, name='fake_3d_data')
 
         self.z = tf.placeholder(tf.float32, [None, self.z_dim], name='z')
-        #self.z_sum = tf.histogram_summary("z", self.z)
+        self.z_sum = tf.summary.histogram("z", self.z)
 
         # three data flow
         self.G = self.generator(self.z)
