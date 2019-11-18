@@ -142,7 +142,7 @@ class GAN3D(object):
         self.d_loss_fake = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(
             labels=tf.zeros_like(self.D_fake), logits=self.D_fake_logits))
         self.g_loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(
-            labels=tf.ones_like(self.D_fake), logits=self.D_fake_logits ))
+            labels=tf.ones_like(self.D_fake), logits=self.D_fake_logits))
 
         self.d_loss_real_sum = tf.summary.scalar("d_loss_real", self.d_loss_real)
         self.d_loss_fake_sum = tf.summary.scalar("d_loss_fake", self.d_loss_fake)
@@ -221,7 +221,7 @@ class GAN3D(object):
         counter = 1
         start_time = time.time()
 
-        batch_data = np.zeros((self.batch_size, 64, 64, 64))
+        batch_data_0 = np.zeros((self.batch_size, 64, 64, 64))
         batch_images = np.zeros((self.batch_size, 64, 64, 64, 1))
 
         if self.load(self.checkpoint_dir):
@@ -231,10 +231,9 @@ class GAN3D(object):
 
         for epoch in range(0, self.epoch):
             for idx in range(0, batch_idxs):
-                load_data_np(self.data_set_path,
-                             list_3d_data_file[idx * self.batch_size:(idx + 1) * self.batch_size],
-                             batch_data)
-                print(batch_data)  # TODO check if the data are returned
+                batch_data = load_data_np(self.data_set_path,
+                                          list_3d_data_file[idx * self.batch_size:(idx + 1) * self.batch_size],
+                                          batch_data_0)
 
                 batch_images = batch_data.reshape(-1, 64, 64, 64, 1)
 
@@ -279,7 +278,7 @@ class GAN3D(object):
 
     def test(self, file_name):
 
-        #mat_path = self.sample_g_path + '/' + file_name
+        # mat_path = self.sample_g_path + '/' + file_name
         mat_path = self.sample_g_path + '/' + file_name
         # print(mat_path)
 
