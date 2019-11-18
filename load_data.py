@@ -14,7 +14,7 @@ def load_data_np(train_data_path, list_train_data_name, batch_data):
 		#data_path = 'D:/python_workspace/Liuhy/3Dporject/ModelNet40_Voxel/ModelNet40_Voxel/airplane/64/train/airplane_0001_1.mat'
 		data_dict = scipy.io.loadmat(data_path)
 
-		batch_data[i_data] = np.array(data_dict['instance'], dtype = int)
+		batch_data[i_data] = np.array(data_dict['Volume'], dtype = int)
 
 	# return batch_data
 
