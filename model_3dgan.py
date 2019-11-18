@@ -212,7 +212,7 @@ class GAN3D(object):
         self.g_sum = tf.summary.merge([self.z_sum, self.d__sum, self.d_loss_fake_sum, self.g_loss_sum])
         self.d_sum = tf.summary.merge([self.z_sum, self.d_sum, self.d_loss_real_sum, self.d_loss_sum])
 
-        self.writer = tf.summary.SummaryWriter("./logs", self.sess.graph)
+        self.writer = tf.summary.FileWriter("./logs", self.sess.graph)
 
         # load 3d data
         list_3d_data_file = load_data_path(self.data_set_path, load_mode=1)  # load just one category
