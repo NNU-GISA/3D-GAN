@@ -83,7 +83,7 @@ class GAN3D(object):
         self.input3d_channels = 1
 
         self.epoch = 30
-        self.batch_size = 15
+        self.batch_size = 50
         self.sample_input_data = 64
 
         self.z_dim = 200
@@ -295,7 +295,7 @@ class GAN3D(object):
         for i_sample in range(0, self.batch_size):
             scipy.io.savemat(
                 (mat_path + '/' + str(i_sample) + '.mat'),
-                {'instance': generator_samples_np[i_sample, :, :, :]})
+                {'Volume': generator_samples_np[i_sample, :, :, :]})
 
     def model_dir(self):
         return "{}_{}_{}".format(
