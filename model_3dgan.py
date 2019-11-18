@@ -269,9 +269,9 @@ class GAN3D(object):
                       % (epoch, idx, batch_idxs,
                          time.time() - start_time, errD_fake + errD_real, errG))
 
-                if np.mod(counter, 50) == 2:
+                if np.mod(counter, 50) == 2:  # return the remainder of the division counter/50
                     # print('test once')
-                    self.test(str(counter), 10)
+                    self.test(str(counter))
 
                 if np.mod(counter, 500) == 2:
                     self.save(self.checkpoint_dir, counter)
