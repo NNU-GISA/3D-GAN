@@ -132,8 +132,8 @@ class GAN3D(object):
         self.D_real, self.D_real_logits = self.discriminator(self.input_data, reuse=False)
         self.D_fake, self.D_fake_logits = self.discriminator(self.G, reuse=True)
 
-        #self.d_sum = tf.histogram_summary("d", self.D_real)
-        #self.d__sum = tf.histogram_summary("d_", self.D_fake)
+        self.d_sum = tf.summary.histogram("d", self.D_real)
+        self.d__sum = tf.summary.histogram("d_", self.D_fake)
         # self.G_sum = tf.image_summary("G", self.G)
 
         # loss function
@@ -209,7 +209,7 @@ class GAN3D(object):
         tf.global_variables_initializer().run()
         # tf.initialize_all_variables().run()
 
-        self.g_sum = tf.summary.merge([self.z_sum, self.d_sum, self.d_loss_fake_sum, self.g_loss_sum])
+        self.g_sum = tf.summary.merge([self.z_sum, self.d__sum, self.d_loss_fake_sum, self.g_loss_sum])
         self.d_sum = tf.summary.merge([self.z_sum, self.d_sum, self.d_loss_real_sum, self.d_loss_sum])
 
         self.writer = tf.summary.SummaryWriter("./logs", self.sess.graph)
