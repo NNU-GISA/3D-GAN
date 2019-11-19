@@ -83,7 +83,7 @@ class GAN3D(object):
         self.input3d_channels = 1
 
         self.epoch = 30
-        self.batch_size = 50
+        self.batch_size = 1
         self.sample_input_data = 64
 
         self.z_dim = 200
