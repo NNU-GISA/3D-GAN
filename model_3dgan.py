@@ -265,13 +265,14 @@ class GAN3D(object):
                 errG = self.g_loss.eval({self.z: batch_z})
 
                 counter += 1
-                print("Epoch: [%2d] [%4d/%4d] time: %4.4f, d_loss: %.8f, g_loss: %.8f" \
-                      % (epoch, idx, batch_idxs,
-                         time.time() - start_time, errD_fake + errD_real, errG))
+
 
                 if np.mod(counter, 50) == 2:  # return the remainder of the division counter/50
                     # print('test once')
                     self.test(str(counter))
+                    print("Epoch: [%2d] [%4d/%4d] time: %4.4f, d_loss: %.8f, g_loss: %.8f" \
+                          % (epoch, idx, batch_idxs,
+                             time.time() - start_time, errD_fake + errD_real, errG))
 
                 if np.mod(counter, 500) == 2:
                     self.save(self.checkpoint_dir, counter)
