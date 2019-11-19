@@ -288,14 +288,17 @@ class GAN3D(object):
         test_num = 10
 
         batch_z = np.random.uniform(-1, 1, [self.batch_size, self.z_dim]).astype(np.float32)
+        # TODO provare altro rumore (gaussiano)
+        # z_sample2 = np.random.normal(0, 0.33, size=[batch_size, 1, 1, 1, z_size]).astype(np.float32)
         generator_samples = self.sess.run([self.G], feed_dict={self.z: batch_z})
         generator_samples_np = np.array(generator_samples[0])
 
         # print(generator_samples_np[1,:,:,:].shape)
-        for i_sample in range(0, self.batch_size):
-            scipy.io.savemat(
-                (mat_path + '/' + str(i_sample) + '.mat'),
-                {'Volume': generator_samples_np[i_sample, :, :, :]})
+        for i_sample in range(0, 8):
+            volume = generator_samples_np[i_sample, :, :, :]
+            volume[volume > 0.5] = 1
+            volume[volume < 0.5] = 0
+            scipy.io.savemat((mat_path + '/' + str(i_sample) + '.mat'), {'Volume': volume})
 
     def model_dir(self):
         return "{}_{}_{}".format(
