@@ -294,9 +294,9 @@ class GAN3D(object):
         generator_samples_np = np.array(generator_samples[0])
 
         # print(generator_samples_np[1,:,:,:].shape)
-        for i_sample in range(0, 8):
+        for i_sample in range(0, 1):  # batch size = 1
             volume = generator_samples_np[i_sample, :, :, :]
-            volume[volume > 0.5] = 1
+            volume[volume >= 0.5] = 1
             volume[volume < 0.5] = 0
             scipy.io.savemat((mat_path + '/' + str(i_sample) + '.mat'), {'Volume': volume})
 
