@@ -8,7 +8,7 @@ import scipy.io
 
 #import mayavi.mlab
 
-root_file = 'D:/python_workspace/Liuhy/3Dporject/3DShapeNets/3DGan_liuhy/sample_generator/'
+root_file = 'generated/chair2'
 train_data_file = root_file
 
 voxel_data_len = 64
@@ -19,7 +19,7 @@ print(data.shape)
 
 
 
-data_dict = scipy.io.loadmat(root_file+ '52/' + '20.mat')
+data_dict = scipy.io.loadmat(root_file+ '52/' + '0.mat')
 #print(data_dict)
 #print(data_dict.shape)
 #data[0] = data_dict['instance']
