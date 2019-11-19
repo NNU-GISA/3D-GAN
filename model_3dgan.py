@@ -83,7 +83,7 @@ class GAN3D(object):
         self.input3d_channels = 1
 
         self.epoch = 30
-        self.batch_size = 100
+        self.batch_size = 50
         self.sample_input_data = 64
 
         self.z_dim = 200
@@ -287,16 +287,16 @@ class GAN3D(object):
 
         test_num = 10
 
-        # batch_z = np.random.uniform(-1, 1, [self.batch_size, self.z_dim]).astype(np.float32)
+        #batch_z = np.random.uniform(-1, 1, [self.batch_size, self.z_dim]).astype(np.float32)
         # TODO provare altro rumore (gaussiano)
-        batch_z = np.random.normal(0, 0.33, size=[self.batch_size, self.z_dim]).astype(np.float32)
+        batch_z = np.random.normal(0, 0.33, [self.batch_size, self.z_dim]).astype(np.float32)
         generator_samples = self.sess.run([self.G], feed_dict={self.z: batch_z})
         generator_samples_np = np.array(generator_samples[0])
 
         # print(generator_samples_np[1,:,:,:].shape)
         for i_sample in range(0, 8):
             volume = generator_samples_np[i_sample, :, :, :]
-            volume[volume >= 0.5] = 1
+            volume[volume > 0.5] = 1
             volume[volume < 0.5] = 0
             scipy.io.savemat((mat_path + '/' + str(i_sample) + '.mat'), {'Volume': volume})
 
